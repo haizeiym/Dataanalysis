@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="7dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/data"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:gravity="center"
+            android:text="日期" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="昨收：" />
+
+            <EditText
+                android:id="@+id/yesterday_data"
+                android:layout_width="179dp"
+                android:layout_height="39dp"
+                android:inputType="number"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="开盘：" />
+
+            <EditText
+                android:id="@+id/today_data"
+                android:layout_width="179dp"
+                android:layout_height="39dp"
+                android:inputType="number"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="购买点位：" />
+
+            <EditText
+                android:id="@+id/buy_point"
+                android:layout_width="179dp"
+                android:layout_height="39dp"
+                android:inputType="number"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="操作次数：" />
+
+            <EditText
+                android:id="@+id/operation_count"
+                android:layout_width="179dp"
+                android:layout_height="39dp"
+                android:inputType="number"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/up_down"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:text="选择涨跌" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:gravity="center"
+            android:text="保存" />
+
+        <Button
+            android:id="@+id/spot_data"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:gravity="center"
+            android:text="数据展示" />
+    </LinearLayout>
+
+</LinearLayout>

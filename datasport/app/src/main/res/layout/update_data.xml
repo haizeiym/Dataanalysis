@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="7dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="最高点：" />
+
+            <EditText
+                android:id="@+id/heighest"
+                android:layout_width="179dp"
+                android:layout_height="39dp"
+                android:inputType="number"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="最低点：" />
+
+            <EditText
+                android:id="@+id/lowest"
+                android:layout_width="179dp"
+                android:layout_height="39dp"
+                android:inputType="number"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="操作次数：" />
+
+            <EditText
+                android:id="@+id/operation"
+                android:layout_width="179dp"
+                android:layout_height="39dp"
+                android:inputType="number"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/right_wrong"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:text="是否正确" />
+
+        <Button
+            android:id="@+id/up_down"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:text="选择涨跌" />
+
+        <Button
+            android:id="@+id/updata"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:gravity="center"
+            android:text="确认修改" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/data_remarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="添加备注"
+                android:minHeight="39dp"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/add_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:gravity="center"
+            android:text="添加备注" />
+    </LinearLayout>
+
+</LinearLayout>

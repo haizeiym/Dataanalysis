@@ -8,6 +8,7 @@ public class SpotModel implements Serializable {
      *
      */
     private static final long serialVersionUID = 1L;
+    public SpotModel(){}
     // 今天日期
     public String data;
     // 买时点位

@@ -1,18 +1,17 @@
 package com.example.administrator.datasport;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.administrator.datasport.db.SpotDao;
+
+import java.util.List;
 
 
 public class ShowDataUI extends Activity {
@@ -42,6 +41,7 @@ public class ShowDataUI extends Activity {
         adapter = new RecAdapter(ShowDataUI.this, showDataList);
         recListView.setAdapter(adapter);
         recListView.setItemAnimator(new DefaultItemAnimator());
+        recListView.addItemDecoration(new DividerItem(ShowDataUI.this, DividerItem.VERTICAL_LIST));
         adapter.setListener(new RecAdapter.OnItemListener() {
 
             @Override
@@ -76,7 +76,4 @@ public class ShowDataUI extends Activity {
             adapter.refresh(showDataList);
         }
     }
-
-    ;
-
 }

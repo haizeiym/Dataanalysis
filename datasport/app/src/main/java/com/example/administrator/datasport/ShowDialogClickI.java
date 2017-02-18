@@ -1,5 +1,5 @@
 package com.example.administrator.datasport;
 
-public interface ShowDialogClickI {
+interface ShowDialogClickI {
 	void clickChoose(int position);
 }

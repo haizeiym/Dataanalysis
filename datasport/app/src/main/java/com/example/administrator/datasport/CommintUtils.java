@@ -8,18 +8,18 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-public class CommintUtils {
+class CommintUtils {
     // 年月日时分秒
-    public static final int YMH = 0;
+    static final int YMH = 0;
     // 年月日
-    public static final int YM = 1;
+    static final int YM = 1;
 
     /**
      * 公用alertDialog
      */
-    public static void commonAlertDialog(Context context, String title,
-                                         String msg, String sureText, String cancleText,
-                                         final AlertDialogI alertDialogI) {
+    static void commonAlertDialog(Context context, String title,
+                                  String msg, String sureText, String cancleText,
+                                  final AlertDialogI alertDialogI) {
         new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(msg)
@@ -36,8 +36,8 @@ public class CommintUtils {
     /**
      * 公用dialog点击
      */
-    public static void commonClickAlerDialog(Context context, String titleName,
-                                             String[] itmes, final ShowDialogClickI showClick) {
+    static void commonClickAlerDialog(Context context, String titleName,
+                                      String[] itmes, final ShowDialogClickI showClick) {
         Dialog alertDialog = new AlertDialog.Builder(context)
                 .setTitle(titleName)
                 .setItems(itmes, new DialogInterface.OnClickListener() {
@@ -50,7 +50,7 @@ public class CommintUtils {
     }
 
     // 获取时间
-    public static String StringData(int type) {
+    static String StringData(int type) {
         String timeData = "";
         String mYear;
         String mMonth;

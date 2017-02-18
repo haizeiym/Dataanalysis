@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class SpotDB extends SQLiteOpenHelper {
+class SpotDB extends SQLiteOpenHelper {
     final String TABLE_NAME = "spot_data";
     // 今天日期
     final String DATA = "data";

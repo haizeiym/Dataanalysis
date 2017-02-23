@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="click"
+            type="com.example.administrator.datasport.UpdataDataUI.Click"/>
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="7dp"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="39dp"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
@@ -33,7 +36,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="39dp"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
@@ -53,7 +56,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="39dp"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
@@ -76,6 +79,7 @@
             android:layout_height="49dp"
             android:layout_gravity="center"
             android:layout_marginTop="7dp"
+            android:onClick="@{click.click}"
             android:text="是否正确" />
 
         <Button
@@ -84,6 +88,7 @@
             android:layout_height="49dp"
             android:layout_gravity="center"
             android:layout_marginTop="7dp"
+            android:onClick="@{click.click}"
             android:text="选择涨跌" />
 
         <Button
@@ -93,12 +98,13 @@
             android:layout_gravity="center"
             android:layout_marginTop="7dp"
             android:gravity="center"
+            android:onClick="@{click.click}"
             android:text="确认修改" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/data_remarks"
@@ -116,7 +122,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="7dp"
             android:gravity="center"
+            android:onClick="@{click.click}"
             android:text="添加备注" />
     </LinearLayout>
-
-</LinearLayout>
+</layout>

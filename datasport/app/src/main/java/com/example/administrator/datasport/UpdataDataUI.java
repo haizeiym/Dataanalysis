@@ -1,70 +1,56 @@
 package com.example.administrator.datasport;
 
 import android.app.Activity;
+import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.administrator.datasport.databinding.UpdateDataBinding;
 import com.example.administrator.datasport.db.SpotDao;
 
+import static com.example.administrator.datasport.R.id.updata;
+
 public class UpdataDataUI extends Activity {
-    private EditText heighest, lowest, operationCount, dataRemarks;
-    private Button upDown, updata, rightWrong, addRemarks;
     private String ud = "", rw = "";
     private SpotDao dao;
     private SpotModel spotModel;
     // 是否能修改数据
     private boolean isChangeData = false;
+    private UpdateDataBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.update_data);
         initView();
         initData();
     }
 
     private void initView() {
-        heighest = (EditText) findViewById(R.id.heighest);
-        lowest = (EditText) findViewById(R.id.lowest);
-        operationCount = (EditText) findViewById(R.id.operation);
-        dataRemarks = (EditText) findViewById(R.id.data_remarks);
-        upDown = (Button) findViewById(R.id.up_down);
-        updata = (Button) findViewById(R.id.updata);
-        rightWrong = (Button) findViewById(R.id.right_wrong);
-        addRemarks = (Button) findViewById(R.id.add_remarks);
+        binding = DataBindingUtil.setContentView(this, R.layout.update_data);
         dao = new SpotDao(this);
         Bundle bundle = getIntent().getExtras();
         spotModel = (SpotModel) bundle.get("data");
+        binding.setClick(new Click());
     }
 
     private void initData() {
-        heighest.setText(spotModel.highest);
-        lowest.setText(spotModel.lowest);
-        operationCount.setText(spotModel.operationCount);
+        binding.heighest.setText(spotModel.highest);
+        binding.lowest.setText(spotModel.lowest);
+        binding.operation.setText(spotModel.operationCount);
         rw = null == spotModel.rightWrong ? "对" : spotModel.rightWrong;
-        rightWrong.setText(rw);
-        rightWrong.setTextColor(setwColor(rw));
+        binding.rightWrong.setText(rw);
+        binding.rightWrong.setTextColor(setwColor(rw));
         ud = null == spotModel.yourself ? "涨" : spotModel.yourself;
-        upDown.setText(ud);
-        upDown.setTextColor(setColor(ud));
-        isChangeData = dao.isTodayData(
-                CommintUtils.StringData(CommintUtils.YM), spotModel.data);
-        dataRemarks.setText(null == spotModel.remarks ? "" : spotModel.remarks);
-        upDown.setOnClickListener(click);
-        updata.setOnClickListener(click);
-        rightWrong.setOnClickListener(click);
-        addRemarks.setOnClickListener(click);
+        binding.upDown.setText(ud);
+        binding.upDown.setTextColor(setColor(ud));
+        isChangeData = dao.isTodayData(CommintUtils.StringData(CommintUtils.YM), spotModel.data);
+        binding.dataRemarks.setText(null == spotModel.remarks ? "" : spotModel.remarks);
     }
 
-    private OnClickListener click = new OnClickListener() {
-
-        @Override
-        public void onClick(View view) {
+    public class Click {
+        public void click(View view) {
             switch (view.getId()) {
                 case R.id.right_wrong:
                     CommintUtils.commonClickAlerDialog(UpdataDataUI.this, "之前对错",
@@ -81,8 +67,8 @@ public class UpdataDataUI extends Activity {
                                             color = Color.GREEN;
                                             break;
                                     }
-                                    rightWrong.setTextColor(color);
-                                    rightWrong.setText(rw);
+                                    binding.rightWrong.setTextColor(color);
+                                    binding.rightWrong.setText(rw);
                                 }
                             });
                     break;
@@ -101,19 +87,19 @@ public class UpdataDataUI extends Activity {
                                             color = Color.GREEN;
                                             break;
                                     }
-                                    upDown.setTextColor(color);
-                                    upDown.setText(ud);
+                                    binding.upDown.setTextColor(color);
+                                    binding.upDown.setText(ud);
                                 }
                             });
                     break;
-                case R.id.updata:
+                case updata:
                     if (!isChangeData) {
                         showToast("只能修改当天数据");
                         break;
                     }
-                    String hp = heighest.getText().toString();
-                    String lp = lowest.getText().toString();
-                    String oc = operationCount.getText().toString();
+                    String hp = binding.heighest.getText().toString();
+                    String lp = binding.lowest.getText().toString();
+                    String oc = binding.operation.getText().toString();
                     if (!hp.isEmpty() && !lp.isEmpty() && !ud.isEmpty()) {
                         String[] newData = {oc.isEmpty() ? "1" : oc, hp, lp, rw,
                                 ud, spotModel.data};
@@ -126,7 +112,7 @@ public class UpdataDataUI extends Activity {
                     }
                     break;
                 case R.id.add_remarks:
-                    String content = dataRemarks.getText().toString();
+                    String content = binding.dataRemarks.getText().toString();
                     if (!content.isEmpty()) {
                         dao.addReamrk(spotModel.data, content);
                         showToast("添加备注成功");
@@ -137,7 +123,7 @@ public class UpdataDataUI extends Activity {
                     break;
             }
         }
-    };
+    }
 
     private int setColor(String upDown) {
         if (null == upDown || upDown.equals("涨")) {

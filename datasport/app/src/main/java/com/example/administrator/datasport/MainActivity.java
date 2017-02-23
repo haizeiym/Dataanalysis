@@ -1,60 +1,45 @@
 package com.example.administrator.datasport;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.datasport.databinding.ActivityMainBinding;
 import com.example.administrator.datasport.db.SpotDao;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView data;
-    private Button save, spot_data, up_down;
-    private EditText buy_point, yesterday_data, today_data, operation_count;
     private SpotDao dao;
     private String ud = "";
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         initView();
         initData();
     }
 
     private void initView() {
-        data = (TextView) findViewById(R.id.data);
-        save = (Button) findViewById(R.id.save);
-        spot_data = (Button) findViewById(R.id.spot_data);
-        up_down = (Button) findViewById(R.id.up_down);
-        buy_point = (EditText) findViewById(R.id.buy_point);
-        yesterday_data = (EditText) findViewById(R.id.yesterday_data);
-        today_data = (EditText) findViewById(R.id.today_data);
-        operation_count = (EditText) findViewById(R.id.operation_count);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         dao = new SpotDao(this);
     }
 
     private void initData() {
         String[] zk = dao.getZK(CommintUtils.StringData(CommintUtils.YM));
         if (null != zk) {
-            yesterday_data.setText(zk[0]);
-            today_data.setText(zk[1]);
+            binding.yesterdayData.setText(zk[0]);
+            binding.todayData.setText(zk[1]);
         }
-        up_down.setOnClickListener(click);
-        save.setOnClickListener(click);
-        spot_data.setOnClickListener(click);
-        data.setText(CommintUtils.StringData(CommintUtils.YMH));
+        binding.setData(CommintUtils.StringData(CommintUtils.YMH));
+        binding.setClick(new Click());
     }
 
-    private View.OnClickListener click = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View view) {
+    public class Click {
+        public void click(View view) {
             switch (view.getId()) {
                 case R.id.up_down:
                     CommintUtils.commonClickAlerDialog(MainActivity.this, "选择涨跌",
@@ -71,17 +56,17 @@ public class MainActivity extends AppCompatActivity {
                                             color = Color.GREEN;
                                             break;
                                     }
-                                    up_down.setTextColor(color);
-                                    up_down.setText(ud);
+                                    binding.upDown.setTextColor(color);
+                                    binding.upDown.setText(ud);
                                 }
                             });
 
                     break;
                 case R.id.save:
-                    String buyPoint = buy_point.getText().toString();
-                    String yesterdayData = yesterday_data.getText().toString();
-                    String todayData = today_data.getText().toString();
-                    String operationCount = operation_count.getText().toString();
+                    String buyPoint = binding.buyPoint.getText().toString();
+                    String yesterdayData = binding.yesterdayData.getText().toString();
+                    String todayData = binding.todayData.getText().toString();
+                    String operationCount = binding.operationCount.getText().toString();
                     if (!buyPoint.isEmpty() && !yesterdayData.isEmpty()
                             && !todayData.isEmpty() && !operationCount.isEmpty()
                             && !ud.isEmpty()) {
@@ -95,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         spotModel.operationCount = operationCount;
                         spotModel.upOrDown = ud;
                         dao.addData(spotModel);
-                        buy_point.setText("");
-                        operation_count.setText("");
+                        binding.buyPoint.setText("");
                         showToast("添加成功");
                     } else {
                         showToast("信息不完整");
@@ -105,9 +89,12 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.spot_data:
                     startActivity(new Intent(MainActivity.this, ShowDataUI.class));
                     break;
+                case R.id.pic_show:
+                    startActivity(new Intent(MainActivity.this, RXGetDataUI.class));
+                    break;
             }
         }
-    };
+    }
 
     private void showToast(String text) {
         Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();

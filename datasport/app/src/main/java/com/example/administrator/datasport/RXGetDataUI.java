@@ -29,6 +29,7 @@ public class RXGetDataUI extends Activity {
 
     private void initData() {
         picModel.setPicName("点击测试");
+        //25879079
         binding.setPicModel(picModel);
         binding.setJustClick(new Click());
     }

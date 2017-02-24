@@ -15,15 +15,18 @@ public class MainActivity extends AppCompatActivity {
     private SpotDao dao;
     private String ud = "";
     private ActivityMainBinding binding;
+    public static MainActivity INSTANCE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
         initData();
+        createWindow();
     }
 
     private void initView() {
+        INSTANCE = MainActivity.this;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         dao = new SpotDao(this);
     }
@@ -94,6 +97,17 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
+    }
+
+    //初始化创建悬浮窗
+    private void createWindow() {
+        startService(new Intent(INSTANCE, CutOutService.class));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(INSTANCE, CutOutService.class));
     }
 
     private void showToast(String text) {

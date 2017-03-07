@@ -73,6 +73,7 @@ public class UpdataDataUI extends Activity {
                             });
                     break;
                 case R.id.up_down:
+                    //USER@MACHINE:~$ sudo apt-get install flex bison gperf libsdl-dev libesd0-dev libwxgtk2.6-dev build-essential zip curl valgrind
                     CommintUtils.commonClickAlerDialog(UpdataDataUI.this, "自猜涨跌",
                             dao.ups, new ShowDialogClickI() {
                                 @Override

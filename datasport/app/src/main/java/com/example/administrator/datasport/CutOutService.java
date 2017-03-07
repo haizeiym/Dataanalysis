@@ -42,7 +42,6 @@ public class CutOutService extends Service {
         initClick();
     }
 
-
     private void initWindowParams() {
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         wmParams = new WindowManager.LayoutParams();
@@ -71,6 +70,7 @@ public class CutOutService extends Service {
     }
 
     private void initClick() {
+        //滑动
        /* mImgBtn.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -104,7 +104,6 @@ public class CutOutService extends Service {
         mImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                screenshot();
                 Toast.makeText(MainActivity.INSTANCE, "点击测试", Toast.LENGTH_SHORT).show();
             }
         });
@@ -120,7 +119,7 @@ public class CutOutService extends Service {
     }
 
     /**
-     * 截屏
+     * 截屏//身份证正反面，银行卡正反面，理赔申请书银行卡信息开户行
      */
     private void screenshot() {
         // 获取屏幕
@@ -133,7 +132,7 @@ public class CutOutService extends Service {
                 // 获取内置SD卡路径
                 String sdCardPath = Environment.getExternalStorageDirectory().getPath();
                 // 图片文件路径
-                String filePath = sdCardPath + File.separator + "screenshot.png";
+                String filePath = sdCardPath + File.separator + "reenshot.png";
 
                 File file = new File(filePath);
                 FileOutputStream os = new FileOutputStream(file);

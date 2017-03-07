@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.datasport">
 
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 在sd卡中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +24,11 @@
         <activity android:name=".ShowDataUI" />
         <activity android:name=".UpdataDataUI" />
         <activity android:name=".RXGetDataUI" />
-        <service android:name=".CutOutService"/>
+
+        <service android:name=".CutOutService" />
+        <service
+            android:name=".t_message.MService"
+            android:process=":remote" />
     </application>
 
 </manifest>
